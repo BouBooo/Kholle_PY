@@ -40,6 +40,7 @@ def write_csv():
 		writer = csv.writer(outfile)
 		values = args.add
 		writer.writerow(values)
+	
 
 def readAndPrint():
 	with open('list.csv') as csvfile:
@@ -56,16 +57,13 @@ def cleanFile():
 
 
 
-
-
-
-
 # PROGRAM
 
 
 if args.add:
 	with open('list.csv', newline='') as csvfile:
 		spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+
 		write_csv()
 
 
@@ -93,12 +91,36 @@ elif args.cut:
 elif args.min:
 	with open('list.csv') as csvfile:
 		list = csv.reader(csvfile, delimiter=',')
-		min_value = min(list)
+		min_value = min(values)
 		print(min_value)
 		
 
 elif args.max:
 	print('z')
+
+
+
+elif args.sum:
+	with open('list.csv') as csvfile:
+		spamreader = csv.reader(csvfile)
+		sum = 0
+		for row in spamreader:
+			for i in row:
+				sum += int(i)
+		print(sum)
+
+
+elif args.moy:
+	with open('list.csv') as csvfile:
+		spamreader = csv.reader(csvfile)
+		sum = 0
+		total = 0
+		for row in spamreader:
+			for i in row:
+				sum += int(i)
+				total = total+1
+		print(sum/total)
+
 
 
 

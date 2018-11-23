@@ -8,7 +8,6 @@ import platform
 import operator
 
 
-
 #
 ##
 ###
@@ -88,17 +87,18 @@ elif args.cut:
 
 # RETURN MIN VALUE OF LIST IN CSV FILE
 
-elif args.min:
-	with open('list.csv') as csvfile:
-		list = csv.reader(csvfile, delimiter=',')
-		min_value = min(values)
-		print(min_value)
-		
-
 elif args.max:
-	print('z')
+	print('max value soon')		
 
+elif args.min:
+	with open("list.csv", "r") as f_input:
+		lmin_row = []
 
+		for row in csv.reader(f_input):
+			row = map(float, row)
+			lmin_row.append(min(row))
+			lmin_row = str(lmin_row)
+		print("La valeur minimum de la liste actuelle est : ", lmin_row)
 
 elif args.sum:
 	with open('list.csv') as csvfile:
@@ -127,12 +127,12 @@ elif args.moy:
 ### NOT WORKING YET ###
 
 elif args.tri:
-	file = open('list.csv','r')
-	thewriter = csv.reader(file, delimiter=',')
-	sort = sorted(thewriter, key=operator.itemgetter(0))
-	for eachline in sort:
-		print (eachline)
-
+	with open('list.csv', mode='rt') as f, open('sorted.csv', 'w') as final:
+		writer = csv.writer(final, delimiter='\t')
+		reader = csv.reader(f, delimiter=',')
+		sorted2 = sorted(reader, key=lambda row: (row))        	
+		for row in sorted2:
+			writer.writerow(row)		
 
 # IF NO OPTION WAS SELECTED
 else:

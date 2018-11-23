@@ -95,7 +95,7 @@ elif args.min:
 		lmin_row = []
 
 		for row in csv.reader(f_input):
-			row = map(float, row)
+			row = map(int, row)
 			lmin_row.append(min(row))
 			lmin_row = str(lmin_row)
 		print("La valeur minimum de la liste actuelle est : ", lmin_row)

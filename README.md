@@ -1,4 +1,17 @@
-"#Kholle_PY" 
+#Kholle_PY
+
+
+| Options       |  Action       |
+| ------------- | ------------- |
+| -a  |  |
+| -l  |   |
+| -c  |  |
+| --sum  |   |
+| --moy  |  |
+| --min  |   |
+| --max  |   |
+| -t |  |
+
 
 
 

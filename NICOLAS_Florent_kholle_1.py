@@ -85,20 +85,30 @@ elif args.cut:
 	cleanFile()
 
 
-# RETURN MIN VALUE OF LIST IN CSV FILE
-
-elif args.max:
-	print('max value soon')		
+# RETURN MIN VALUE FROM CSV FILE
 
 elif args.min:
 	with open("list.csv", "r") as f_input:
 		lmin_row = []
 
 		for row in csv.reader(f_input):
-			row = map(float, row)
+			row = map(int, row)
 			lmin_row.append(min(row))
 			lmin_row = str(lmin_row)
 		print("La valeur minimum de la liste actuelle est : ", lmin_row)
+
+
+# RETURN MAX VALUE FROM CSV FILE
+
+elif args.max:
+	with open("list.csv", "r") as f_input:
+		lmax_row = []
+
+		for row in csv.reader(f_input):
+			row = map(int, row)
+			lmax_row.append(max(row))
+			lmax_row = str(lmax_row)
+		print("La valeur maximum de la liste actuelle est : ", lmax_row)
 
 elif args.sum:
 	with open('list.csv') as csvfile:
@@ -107,7 +117,7 @@ elif args.sum:
 		for row in spamreader:
 			for i in row:
 				sum += int(i)
-		print(sum)
+		print("La somme totale des valeurs insérées est de : ", sum)
 
 
 elif args.moy:
@@ -119,7 +129,7 @@ elif args.moy:
 			for i in row:
 				sum += int(i)
 				total = total+1
-		print(sum/total)
+		print("La moyenne des valeurs insérées est de : ", sum/total)
 
 
 

@@ -34,6 +34,18 @@ args = parser.parse_args()
 
 # FUNCTIONS
 
+def getVersion():
+	print("Python version:")
+	print(platform.python_version())
+
+
+def readCsv():
+	with open('list.csv', newline='') as csvfile:
+		spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+
+
+
+
 def write_csv():
 	with open('list.csv', 'w') as outfile:
 		writer = csv.writer(outfile)
@@ -41,7 +53,7 @@ def write_csv():
 		writer.writerow(values)
 	
 
-def readAndPrint():
+def listValues():
 	with open('list.csv') as csvfile:
 		readCSV = csv.reader(csvfile, delimiter=',')
 		for row in readCSV:
@@ -54,29 +66,69 @@ def cleanFile():
 	f.close()
 
 
+def returnSum():
+	with open('list.csv') as csvfile:
+		spamreader = csv.reader(csvfile)
+		sum = 0
+		for row in spamreader:
+			for i in row:
+				sum += int(i)
+	print("La somme totale des valeurs insérées est de : ", sum)
+
+
+def returnAverage():
+	with open('list.csv') as csvfile:
+		spamreader = csv.reader(csvfile)
+		sum = 0
+		total = 0
+		for row in spamreader:
+			for i in row:
+				sum += int(i)
+				total = total+1
+	print("La moyenne des valeurs insérées est de : ", sum/total)
+
+
+def returnMaxValue():
+	with open("list.csv", "r") as f_input:
+		lmax_row = []
+		for row in csv.reader(f_input):
+			row = map(int, row)
+			lmax_row.append(max(row))
+			lmax_row = str(lmax_row)
+	print("La valeur maximum de la liste actuelle est : ", lmax_row)
+
+
+def returnMinValue():
+	with open("list.csv", "r") as f_input:
+		lmin_row = []
+		for row in csv.reader(f_input):
+			row = map(int, row)
+			lmin_row.append(min(row))
+			lmin_row = str(lmin_row)
+	print("La valeur minimum de la liste actuelle est : ", lmin_row)
+
+
+
 
 
 # PROGRAM
 
+# ADD VALUES IN CSV FILE
 
 if args.add:
-	with open('list.csv', newline='') as csvfile:
-		spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-
-		write_csv()
+	readCsv()
+	write_csv()
 
 
 # SHOW PYTHON VERSION
 
 elif args.version:
-	print("Python version:")
-	print(platform.python_version())
+	getVersion()
 
-
-# LIST ELEMENT
+# LIST VALUES
 		
 elif args.list:
-	readAndPrint()
+	listValues()
 
 
 #CLEAN CSV FILE
@@ -88,49 +140,25 @@ elif args.cut:
 # RETURN MIN VALUE FROM CSV FILE
 
 elif args.min:
-	with open("list.csv", "r") as f_input:
-		lmin_row = []
-
-		for row in csv.reader(f_input):
-			row = map(int, row)
-			lmin_row.append(min(row))
-			lmin_row = str(lmin_row)
-		print("La valeur minimum de la liste actuelle est : ", lmin_row)
+	returnMinValue()
 
 
 # RETURN MAX VALUE FROM CSV FILE
 
 elif args.max:
-	with open("list.csv", "r") as f_input:
-		lmax_row = []
+	returnMaxValue()
 
-		for row in csv.reader(f_input):
-			row = map(int, row)
-			lmax_row.append(max(row))
-			lmax_row = str(lmax_row)
-		print("La valeur maximum de la liste actuelle est : ", lmax_row)
+
+# RETURN SUM FROM CSV FILE
 
 elif args.sum:
-	with open('list.csv') as csvfile:
-		spamreader = csv.reader(csvfile)
-		sum = 0
-		for row in spamreader:
-			for i in row:
-				sum += int(i)
-		print("La somme totale des valeurs insérées est de : ", sum)
+	returnSum()
 
+
+# RETURN AVERAGE FROM CSV FILE
 
 elif args.moy:
-	with open('list.csv') as csvfile:
-		spamreader = csv.reader(csvfile)
-		sum = 0
-		total = 0
-		for row in spamreader:
-			for i in row:
-				sum += int(i)
-				total = total+1
-		print("La moyenne des valeurs insérées est de : ", sum/total)
-
+	returnAverage()
 
 
 
@@ -147,3 +175,5 @@ elif args.tri:
 # IF NO OPTION WAS SELECTED
 else:
 	print('Merci d\'entrer une option. Quel intérêt sinon? ')
+
+

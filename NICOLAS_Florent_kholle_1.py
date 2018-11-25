@@ -21,7 +21,10 @@ import platform
 import operator
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4818bc7a7ae335581ec7d9a55b1ac8e104db46a8
 #------------------
 #
 # OPTIONS
@@ -43,7 +46,10 @@ args = parser.parse_args()
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4818bc7a7ae335581ec7d9a55b1ac8e104db46a8
 #------------------
 #
 # FUNCTIONS
@@ -138,9 +144,12 @@ def sortDesc():
 		sortedList = sorted(reader,reverse=True)
 		print("desc sorted :", sortedList)
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 4818bc7a7ae335581ec7d9a55b1ac8e104db46a8
 #------------------
 #
 # PROGRAM

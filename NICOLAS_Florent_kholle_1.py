@@ -1,6 +1,19 @@
 #!/usr/bin/python3.6
 
 
+# NICOLAS_Floren_kholle_1.py
+# Programme en Python qui communique et intéragit avec un fichier .csv
+# 25/11/2018
+# NICOLAS Florent
+
+
+#------------------
+#
+# IMPORTS
+#
+#------------------
+
+
 import argparse
 import csv
 import sys
@@ -8,13 +21,12 @@ import platform
 import operator
 
 
+
+#------------------
 #
-##
-###
-#### argparse launch options
-###
-##
+# OPTIONS
 #
+#------------------
 
 parser = argparse.ArgumentParser(conflict_handler='resolve')
 parser.add_argument("-v", "--version", help="Affiche la version de pyton", action="store_true")
@@ -25,14 +37,18 @@ parser.add_argument("-s", "--max", help="Affiche la valeur maximum contenue dans
 parser.add_argument("-s", "--min", help="Affiche la valeur minimum contenue dans la liste", action="store_true")
 parser.add_argument("-s", "--moy", help="Affiche la moyenne de tous les éléments dans la liste", action="store_true")
 parser.add_argument("-s", "--sum", help="Affiche la somme de tous les éléments dans la liste", action="store_true") 
-parser.add_argument("-t", "--tri", help="Trie la liste dans l’ordre croissant", action="store_true")
-parser.add_argument("-t --desc", help="Trie la liste dans l’ordre décroissant", action="store_true")
+parser.add_argument("-t", "--asc", help="Trie la liste dans l’ordre croissant", action="store_true")
+parser.add_argument("-t", "--desc", help="Trie la liste dans l’ordre décroissant", action="store_true")
 args = parser.parse_args()
 
 
 
 
+#------------------
+#
 # FUNCTIONS
+#
+#------------------
 
 def getVersion():
 	print("Python version:")
@@ -46,7 +62,7 @@ def readCsv():
 
 
 
-def write_csv():
+def writeCsv():
 	with open('list.csv', 'w') as outfile:
 		writer = csv.writer(outfile)
 		values = args.add
@@ -64,6 +80,7 @@ def cleanFile():
 	f = open("list.csv", "w")
 	f.truncate()
 	f.close()
+	print('list.csv cleaned')
 
 
 def returnSum():
@@ -109,15 +126,32 @@ def returnMinValue():
 
 
 
+def sortAsc():
+	with open("list.csv", "r") as csvfile:
+		reader = csv.reader(csvfile)
+		sortedList = sorted(reader,reverse=False)
+		print("asc sorted :", sortedList)
+
+def sortDesc():
+	with open("list.csv", "r") as csvfile:
+		reader = csv.reader(csvfile)
+		sortedList = sorted(reader,reverse=True)
+		print("desc sorted :", sortedList)
 
 
+
+
+#------------------
+#
 # PROGRAM
+#
+#------------------
 
 # ADD VALUES IN CSV FILE
 
 if args.add:
 	readCsv()
-	write_csv()
+	writeCsv()
 
 
 # SHOW PYTHON VERSION
@@ -164,13 +198,14 @@ elif args.moy:
 
 ### NOT WORKING YET ###
 
-elif args.tri:
-	with open('list.csv', mode='rt') as f, open('sorted.csv', 'w') as final:
-		writer = csv.writer(final, delimiter='\t')
-		reader = csv.reader(f, delimiter=',')
-		sorted2 = sorted(reader, key=lambda row: (row))        	
-		for row in sorted2:
-			writer.writerow(row)		
+elif args.asc:
+	sortAsc()
+
+
+elif args.desc:
+	sortDesc()
+
+	
 
 # IF NO OPTION WAS SELECTED
 else:

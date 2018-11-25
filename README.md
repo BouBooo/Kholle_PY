@@ -33,4 +33,7 @@
 - [x] max option
 - [ ] sort asc option
 - [ ] sort desc option
-(- [x] version option)
+
+##### Optionnel:
+
+- [x] version option 

@@ -8,13 +8,11 @@ import platform
 import operator
 
 
+#------------------
 #
-##
-###
-#### argparse launch options
-###
-##
+# OPTIONS
 #
+#------------------
 
 parser = argparse.ArgumentParser(conflict_handler='resolve')
 parser.add_argument("-v", "--version", help="Affiche la version de pyton", action="store_true")
@@ -31,8 +29,11 @@ args = parser.parse_args()
 
 
 
-
+#------------------
+#
 # FUNCTIONS
+#
+#------------------
 
 def getVersion():
 	print("Python version:")
@@ -111,7 +112,11 @@ def returnMinValue():
 
 
 
+#------------------
+#
 # PROGRAM
+#
+#------------------
 
 # ADD VALUES IN CSV FILE
 

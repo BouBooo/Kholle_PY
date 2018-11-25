@@ -4,6 +4,7 @@
 | Options       |  Action       |
 | ------------- | ------------- |
 | -h  | Afficher la page d'aide |
+| -v  | Afficher la version de Python utilisée |
 | -a  | Ajouter des valeurs |
 | -l  | Lister le contenu  |
 | -c  | Supprimer toutes les valeurs  |
